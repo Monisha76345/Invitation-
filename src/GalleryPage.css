@@ -1,0 +1,57 @@
+.gallery-page {
+  min-height: 100dvh;
+  margin: 0;
+  padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(2rem, 5vw, 4rem);
+  box-sizing: border-box;
+  background: #f7f4ef;
+  color: #2a2622;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.gallery-page__header {
+  max-width: 40rem;
+  margin: 0 auto clamp(2rem, 5vw, 3.5rem);
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+.gallery-page__title {
+  margin: 0 0 0.65rem;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: #1a1816;
+}
+
+.gallery-page__subtitle {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #4a4540;
+}
+
+.gallery-page__footer {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  text-align: center;
+}
+
+.gallery-page__back {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6a635c;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(106, 99, 92, 0.35);
+  padding-bottom: 2px;
+}
+
+.gallery-page__back:hover {
+  color: #2a2622;
+  border-bottom-color: rgba(42, 38, 34, 0.45);
+}

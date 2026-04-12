@@ -1,0 +1,472 @@
+:root {
+  --primary-font: 'Montserrat', sans-serif;
+  --display-font: 'Playfair Display', serif;
+  --accent-font: 'Great Vibes', cursive;
+
+  --text-white: #ffffff;
+  --circle-bg: #ffffff;
+  --circle-ink: #1a1a1a;
+  --circle-muted: #2c2c2c;
+  --gold-ring: #c6a24a;
+  --btn-teal: #1d85b1;
+  --btn-teal-hover: #1a7399;
+
+  /* Landing: same horizontal rhythm on all viewports */
+  --landing-page-pad: max(
+    clamp(14px, 4.2vw, 40px),
+    env(safe-area-inset-left, 0px)
+  );
+  --landing-page-pad-right: max(
+    clamp(14px, 4.2vw, 40px),
+    env(safe-area-inset-right, 0px)
+  );
+  --landing-card-max: 420px;
+  --landing-text-pad-x: clamp(18px, 5vw, 32px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--primary-font);
+  background-color: #0c0d0e;
+  color: var(--text-white);
+  overflow-x: hidden;
+}
+
+.invitation-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* —— Locked gate (shell circle) —— */
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: max(40px, env(safe-area-inset-top, 0px))
+    max(20px, env(safe-area-inset-right, 0px))
+    max(32px, env(safe-area-inset-bottom, 0px))
+    max(20px, env(safe-area-inset-left, 0px));
+  text-align: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.is-locked .hero-wrapper {
+  background-color: #000;
+  justify-content: center;
+}
+
+/* Circular callout + shell frame */
+.invitation-circle-container {
+  position: relative;
+  width: min(94vw, 480px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.invitation-circle-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 480px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.circle-frame-img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+  user-select: none;
+  filter:
+    drop-shadow(0 6px 28px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 22px rgba(255, 214, 160, 0.22));
+  animation: frameGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes frameGlow {
+  from {
+    filter:
+      drop-shadow(0 6px 28px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 18px rgba(255, 214, 160, 0.18));
+  }
+  to {
+    filter:
+      drop-shadow(0 8px 32px rgba(0, 0, 0, 0.6))
+      drop-shadow(0 0 28px rgba(255, 224, 180, 0.32));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circle-frame-img {
+    animation: none;
+    filter:
+      drop-shadow(0 6px 28px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 20px rgba(255, 214, 160, 0.24));
+  }
+
+  .is-open .landing-names,
+  .is-open .landing-lead,
+  .is-open .landing-sub {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.circle-inner-plate {
+  grid-area: 1 / 1;
+  z-index: 1;
+  width: min(60%, 286px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--circle-bg);
+  border: 1px solid var(--gold-ring);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 0 0 2px #f3e8cc,
+    0 0 0 3px var(--gold-ring),
+    0 12px 36px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+.invitation-circle {
+  grid-area: 1 / 1;
+  width: min(54%, 268px);
+  max-width: 268px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(16px, 3.5vw, 32px);
+  background: transparent;
+  color: var(--circle-ink);
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  pointer-events: auto;
+  animation: scaleIn 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.invitation-circle h2 {
+  font-family: var(--accent-font);
+  font-size: clamp(1.85rem, 5.2vw, 2.65rem);
+  line-height: 1.1;
+  margin-bottom: 10px;
+  color: var(--circle-ink);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.invitation-circle p {
+  font-family: var(--display-font);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.45;
+  margin-bottom: 20px;
+  color: var(--circle-muted);
+}
+
+.discover-btn {
+  background-color: var(--btn-teal);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-family: var(--display-font);
+  font-weight: 500;
+  font-size: clamp(0.74rem, 2.15vw, 0.92rem);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s, background-color 0.25s, box-shadow 0.25s;
+}
+
+.discover-btn:hover {
+  background-color: var(--btn-teal-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* —— Open landing: full-viewport card, no outer gutters —— */
+.is-open.invitation-container {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+    env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  background: #ffffff;
+}
+
+.landing-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  min-height: calc(
+    100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)
+  );
+  min-height: calc(
+    100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)
+  );
+  margin: 0;
+  background: #fff;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.landing-card__text {
+  padding: clamp(10px, 2.4vw, 18px) var(--landing-text-pad-x)
+    clamp(20px, 4vw, 32px);
+  text-align: center;
+  background: #fff;
+  width: 100%;
+}
+
+.landing-names {
+  font-family: var(--accent-font);
+  font-size: clamp(2.35rem, 6.5vw + 0.6rem, 3.4rem);
+  font-weight: 400;
+  color: #0f0f12;
+  margin: 0 auto 16px;
+  line-height: 1.12;
+  max-width: 100%;
+  text-wrap: balance;
+}
+
+.landing-lead {
+  font-family: var(--display-font);
+  font-size: clamp(0.95rem, 2.5vw + 0.35rem, 1.2rem);
+  font-weight: 600;
+  color: #16161a;
+  margin: 0 auto 10px;
+  line-height: 1.45;
+  max-width: 28ch;
+  text-wrap: balance;
+}
+
+.landing-sub {
+  font-family: var(--display-font);
+  font-size: clamp(0.82rem, 2vw + 0.3rem, 1rem);
+  font-weight: 400;
+  color: #4a4a52;
+  margin: 0 auto;
+  line-height: 1.55;
+  max-width: min(28ch, 100%);
+  text-wrap: balance;
+}
+
+@keyframes landingPhraseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landingNameIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.is-open .landing-names {
+  animation: landingNameIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
+.is-open .landing-lead {
+  animation: landingPhraseIn 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
+}
+
+.is-open .landing-sub {
+  animation: landingPhraseIn 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.28s;
+}
+
+.landing-after-photo {
+  flex: 0 0 auto;
+  width: 100%;
+  margin-top: clamp(1.25rem, 3.5vw, 2.25rem);
+  padding: clamp(1.5rem, 4vw, 2.25rem) var(--landing-text-pad-x)
+    clamp(1.75rem, 4vw, 2.75rem);
+  text-align: center;
+  background: #ffffff;
+}
+
+.landing-after-photo__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--accent-font);
+  font-size: clamp(2.15rem, 5.8vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #0f0f12;
+}
+
+.landing-after-photo__subtitle {
+  margin: 0 auto;
+  max-width: 30rem;
+  font-family: var(--display-font);
+  font-size: clamp(0.98rem, 2.35vw, 1.18rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #4a4a52;
+}
+
+.is-open .landing-after-photo {
+  animation: landingPhraseIn 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.62s;
+}
+
+.landing-marquee-wrap {
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 clamp(1rem, 3vw, 1.5rem);
+  background: #ffffff;
+}
+
+.is-open .landing-marquee-wrap {
+  animation: landingPhraseIn 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.72s;
+}
+
+.landing-marquee-wrap .gallery-marquee {
+  border: none;
+  background: #ffffff;
+}
+
+.landing-marquee-wrap .gallery-marquee__inner {
+  mask-image: none;
+}
+
+.landing-marquee-wrap .gallery-marquee--embed {
+  --slide-w: 184px;
+  --slide-h: 258px;
+}
+
+.landing-marquee-wrap .gallery-marquee__slide {
+  padding: 0;
+}
+
+.landing-card__photo {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.landing-card__photo-img {
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: min(60vh, 640px);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 34%;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.landing-card__photo-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: min(12%, clamp(28px, 6vw, 52px));
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.55) 45%,
+    rgba(250, 252, 255, 0.12) 78%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .invitation-circle-container {
+    width: min(92vw, 420px);
+  }
+  .invitation-circle-stack {
+    max-width: 420px;
+  }
+  .circle-inner-plate {
+    width: min(58%, 252px);
+  }
+  .invitation-circle {
+    width: min(52%, 228px);
+    max-width: 228px;
+    padding: 14px;
+  }
+  .invitation-circle h2 {
+    font-size: clamp(1.65rem, 5.5vw, 2.15rem);
+  }
+  .invitation-circle p {
+    font-size: 0.86rem;
+  }
+  .discover-btn {
+    font-size: clamp(0.68rem, 2.4vw, 0.82rem);
+    padding: 9px 16px;
+  }
+}

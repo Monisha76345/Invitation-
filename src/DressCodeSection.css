@@ -1,0 +1,163 @@
+.dress-code-section {
+  box-sizing: border-box;
+  width: 100%;
+  padding: clamp(2.25rem, 6vw, 3rem) var(--landing-text-pad-x, 1.25rem)
+    clamp(2.5rem, 7vw, 3.5rem);
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+.dress-code-section__header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 5.5vw, 2.75rem);
+}
+
+.dress-code-section__title {
+  margin: 0 0 0.45rem;
+  font-family: var(--accent-font, 'Great Vibes', cursive);
+  font-size: clamp(2.65rem, 7.5vw, 3.65rem);
+  font-weight: 400;
+  color: #9a9a9a;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.dress-code-section__lede {
+  margin: 0;
+  font-family: 'Cormorant Garamond', 'Times New Roman', Times, serif;
+  font-size: clamp(1.02rem, 2.6vw, 1.14rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #6e6e6e;
+}
+
+.dress-code-section__rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.35rem, 7vw, 3.25rem);
+  /* Full card width so text + polaroid + arrow read like desktop on phones */
+  max-width: min(32rem, 100%);
+  margin: 0 auto;
+}
+
+.dress-code-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: clamp(0.5rem, 2.2vw, 1.35rem);
+  align-items: center;
+}
+
+.dress-code-row--photo-first {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+}
+
+.dress-code-row--text-first .dress-code-row__text {
+  text-align: left;
+}
+
+.dress-code-row--photo-first .dress-code-row__text {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+}
+
+.dress-code-row--photo-first .dress-code-polaroid {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.dress-code-row__text {
+  position: relative;
+  min-width: 0;
+}
+
+.dress-code-row__names {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: flex-start;
+}
+
+.dress-code-row--photo-first .dress-code-row__names {
+  align-items: flex-end;
+}
+
+.dress-code-row__name-line {
+  display: block;
+  font-family: var(--primary-font, 'Montserrat', sans-serif);
+  font-size: clamp(0.78rem, 2.1vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #222;
+  line-height: 1.35;
+}
+
+.dress-code-row__arrow-wrap {
+  margin-top: 0.65rem;
+  color: #c4c4c4;
+}
+
+.dress-code-row--photo-first .dress-code-row__arrow-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dress-code-arrow {
+  display: block;
+  width: min(10.5rem, 72%);
+  height: auto;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.dress-code-polaroid {
+  margin: 0;
+  padding: 10px 10px clamp(1.35rem, 4.5vw, 1.65rem);
+  background: #fff;
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.04),
+    0 14px 32px rgba(0, 0, 0, 0.1);
+  justify-self: center;
+  width: min(100%, 200px);
+}
+
+.dress-code-polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.dress-code-polaroid--cw {
+  transform: rotate(3deg);
+}
+
+.dress-code-polaroid--ccw {
+  transform: rotate(-3deg);
+}
+
+/* Keep the same side‑by‑side layout as laptop so the arrow stays between
+   copy and polaroid (stacking looked like a stray mark above the photo). */
+@media (max-width: 520px) {
+  .dress-code-polaroid {
+    width: min(100%, min(168px, 46vw));
+  }
+
+  .dress-code-row__arrow-wrap {
+    margin-top: 0.5rem;
+  }
+
+  .dress-code-arrow {
+    width: min(9.25rem, 78%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dress-code-polaroid--cw,
+  .dress-code-polaroid--ccw {
+    transform: none;
+  }
+}

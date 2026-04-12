@@ -1,0 +1,84 @@
+.closing-message-card {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.closing-message-card__image-wrap {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.closing-message-card__image {
+  display: block;
+  width: 100%;
+  min-height: min(52vh, 520px);
+  max-height: min(68vh, 640px);
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.closing-message-card__image-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: min(42%, clamp(120px, 28vw, 200px));
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.92) 12%,
+    rgba(255, 255, 255, 0.5) 42%,
+    rgba(255, 255, 255, 0.08) 72%,
+    transparent 100%
+  );
+}
+
+.closing-message-card__panel {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: clamp(1.85rem, 5.5vw, 2.75rem) var(--landing-text-pad-x)
+    clamp(2.5rem, 7vw, 3.25rem);
+  padding-bottom: max(
+    clamp(2.75rem, 8vw, 3.75rem),
+    env(safe-area-inset-bottom, 0px)
+  );
+  text-align: center;
+  background: #ffffff;
+}
+
+.closing-message-card__script {
+  margin: 0 0 0.65rem;
+  font-family: var(--accent-font);
+  font-size: clamp(2rem, 5.8vw, 2.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #3a3a40;
+}
+
+.closing-message-card__names {
+  margin: 0;
+  font-family: var(--display-font);
+  font-size: clamp(1.35rem, 3.8vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #2a2a30;
+}
+
+.closing-message-card__heart {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1rem, 3vw, 1.35rem);
+  color: #1a1a1a;
+  opacity: 0.88;
+}
+
+.closing-message-card__heart svg {
+  width: clamp(26px, 7vw, 32px);
+  height: clamp(26px, 7vw, 32px);
+}
