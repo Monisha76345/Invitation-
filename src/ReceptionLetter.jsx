@@ -6,7 +6,7 @@ export default function ReceptionLetter() {
       <div className="reception-letter__content">
         <h2 className="reception-letter__heading">Dear friends and family!</h2>
         <p className="reception-letter__body">
-          We are thrilled to announce a special event happening in ths joyful season — our
+          We are thrilled to announce a special event happening in this joyful season — our
           wedding reception! This day wouldn&apos;t be complete without our
           closest loved ones, so we warmly invite you to join us and celebrate
           this joyful occasion together.
