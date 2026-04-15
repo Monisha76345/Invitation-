@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import circleFrame from './assets/circle-frame.png';
-import coupleHero from './assets/couple-hero.jpg';
+import coupleHero from './assets/couple-hero.png';
 import GalleryMarquee from './GalleryMarquee.jsx';
 import ReceptionLetter from './ReceptionLetter.jsx';
 import EventTimelineSection from './EventTimelineSection.jsx';
